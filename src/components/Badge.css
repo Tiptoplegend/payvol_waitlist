@@ -1,0 +1,65 @@
+/* src/components/Badge.css */
+
+.badge {
+  /* ── SHAPE ─────────────────────────────────────────────── */
+
+  display: inline-flex;
+  /* inline = only as wide as its content (not full width)   */
+  /* flex   = children (icon + text) line up in a row         */
+
+  align-items: center;
+  /* vertically centers icon and text with each other         */
+
+  gap: 6px;
+  /* space BETWEEN the icon and the label                     */
+
+  padding: 6px 16px;
+  /* 6px top/bottom breathing room, 16px left/right           */
+
+  border-radius: 100px;
+  /* a huge value = pill shape. 100px works for any height.   */
+  /* try changing to 4px and see what happens                 */
+
+
+  /* ── GLASSMORPHISM ─────────────────────────────────────── */
+
+  background: rgba(30, 223, 30, 0.08);
+  /* white at 8% opacity. nearly invisible but gives a tint   */
+  /* the number after the last comma (0.08) = opacity 0–1     */
+
+  backdrop-filter: blur(10px);
+  /* THIS is the glass effect. it blurs what's BEHIND it.     */
+  /* only works if something is behind it (your bg image)     */
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari needs this prefix. Always pair them together.     */
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* a faint white border = the "rim" of the glass            */
+  /* without this border, the glass effect looks flat         */
+
+
+  /* ── TYPOGRAPHY ────────────────────────────────────────── */
+
+  font-family: var(--font-body);
+  /* uses the CSS variable you defined in index.css           */
+
+  font-size: 0.8rem;
+  /* small — badges are supporting info, not headlines        */
+
+  font-weight: 500;
+  /* slightly bold — makes it legible at small sizes          */
+
+  color: rgba(255, 255, 255, 0.65);
+  /* not full white — softer, feels more refined              */
+
+  letter-spacing: 0.04em;
+  /* tiny extra space between letters — improves readability  */
+  /* at small sizes and gives it a polished "label" feel      */
+}
+
+/* ── The icon wrapper ───────────────────────────────────── */
+.badge__icon {
+  display: flex;             /* centers the SVG icon inside */
+  align-items: center;
+  opacity: 0.8;              /* slightly dimmer than the text */
+}

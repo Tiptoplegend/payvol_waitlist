@@ -1,0 +1,247 @@
+.bento-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 100px 20px;
+  box-sizing: border-box;
+  z-index: 1; /* keep content above backgrounds */
+}
+
+/* Base Card Styles */
+.bento-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  align-items: stretch;
+}
+
+.bento-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1; /* equal width columns */
+}
+
+/* Base Card Styles */
+.bento-card {
+  position: relative;
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 32px;
+  text-align: left;
+  /* Ensure flex behaves */
+  flex: 1;
+}
+
+/* The magic spotlight layer */
+.spotlight-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-content {
+  position: relative;
+  z-index: 1; /* Stay above spotlight */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Card Inner Typography & Icons */
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bento-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.bento-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* Special styling for Middle Column */
+.middle-col {
+  flex: 1.2; /* a tiny bit wider maybe? nah, let's stick to 1 but with taller contents */
+}
+
+/* "Go mobile" specific */
+.mobile-pane {
+  padding: 40px;
+  flex: 2 !important; /* It spans much more vertical space */
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-pane h2 {
+  font-size: 40px;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+}
+
+.mobile-mockup {
+  position: relative;
+  margin-top: auto; /* Push to bottom */
+  left: 20%;
+  width: 250px;
+  height: 300px; /* Cut off at bottom */
+  background: #000;
+  border: 3px solid #333;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom: none;
+  margin-bottom: -40px; /* Hide bottom overflow */
+  padding: 16px;
+  box-shadow: -10px -10px 40px rgba(0,0,0,0.5);
+}
+
+/* Mockup inner details */
+.mockup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: white;
+  margin-bottom: 16px;
+}
+.notch {
+  width: 60px;
+  height: 16px;
+  background: #000;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.mockup-search {
+  background: #222;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 24px;
+}
+.mockup-node-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.node {
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 16px;
+  padding: 8px 16px;
+  font-size: 10px;
+  color: white;
+  z-index: 2;
+}
+.icon-node { padding: 8px; border-radius: 50%; }
+.line {
+  width: 1px;
+  background: #444;
+  height: 20px;
+  z-index: 1;
+}
+.node-text {
+  position: absolute;
+  left: 60%;
+  font-size: 10px;
+  color: white;
+}
+.text-1 { top: 40px; }
+.text-2 { top: 90px; }
+.node-text span { color: #888; font-size: 8px; }
+
+/* Second middle card */
+.bento-text-only {
+  flex: 1;
+}
+.large-p {
+  font-size: 16px !important;
+  color: rgba(255,255,255,0.8) !important;
+}
+
+.floating-dock {
+  background: rgba(40,40,40,0.8);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px;
+  margin-top: 24px;
+}
+.dock-icon {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  font-size: 14px;
+}
+.active-icon {
+  border: 1px solid #c084fc;
+}
+
+/* Button */
+.get-app-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+.get-app-btn {
+  background: black;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 14px 40px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.get-app-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bento-container {
+    flex-direction: column;
+  }
+  .bento-background-text {
+    font-size: 50vw;
+  }
+}

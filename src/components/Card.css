@@ -1,0 +1,109 @@
+.card {
+  /* Dimensions & Centering */
+  width: 100%;
+  max-width: 640px;
+  padding: 56px 48px;
+  margin: 0 auto;
+  border-radius: 28px;
+  
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.05); /* Slight white tint */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Light translucent border */
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4); /* Soft shadow around it */
+  
+  text-align: center;
+  color: white; /* Important for contrast against dark dynamic bg */
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.card h2 {
+  font-size: 34px;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
+}
+
+.card-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7); /* Dimmer white for secondary text */
+  margin: 0 0 40px 0;
+}
+
+/* Input Group Pill Container */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4); /* Dark inner pill */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px; /* Pill shape */
+  padding: 6px; /* Space around the button */
+  max-width: 450px;
+  margin: 0 auto;
+  transition: border-color 0.3s;
+}
+
+.input-group:focus-within {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Form Input */
+.input-group input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  min-width: 0;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Join Button */
+.join-btn {
+  background: white;
+  color: #000;
+  border: none;
+  border-radius: 999px; /* Pill shape */
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.join-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.02);
+}
+
+.join-btn:active {
+  transform: scale(0.98);
+}
+
+.success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.success-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+}

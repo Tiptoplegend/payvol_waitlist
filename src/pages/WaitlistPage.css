@@ -1,0 +1,116 @@
+.waitlist-page-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 1; /* root stacking context */
+  overflow: hidden; /* Hide horizontal overflow if text pushes */
+}
+
+/* Base image for waitlist */
+.waitlist-background {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 100vh;
+  background-image: url('../assets/wishlist.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+/* Background for the Bento section */
+.bento-background {
+  position: absolute;
+  top: 100vh; left: 0; right: 0; bottom: 0;
+  background-color: black;
+  z-index: -2;
+}
+
+.background-text {
+  position: absolute;
+  top: 100vh; /* Centered visually right on the SEAM. The text will overlap the Waitlist image AND the Black background */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25vw;
+  line-height: 0.75;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1); /* Ghost outline effect */
+  text-stroke: 2px rgba(255, 255, 255, 0.1);
+  pointer-events: none; /* Allows interacting with elements underneath */
+  z-index: -1; /* Above backgrounds (-2), below content */
+  white-space: nowrap;
+  user-select: none;
+  letter-spacing: 3vw;
+}
+
+.waitlist-root {
+  min-height: 100vh; /* Takes full page */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.heading {
+  font-size: 80px;
+  font-weight: 800;
+  letter-spacing: -3px;
+  margin: 20px 0 40px 0;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 48px;
+    letter-spacing: -1.5px;
+  }
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: white;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.social-icon:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
