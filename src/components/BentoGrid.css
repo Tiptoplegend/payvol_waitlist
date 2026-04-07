@@ -1,9 +1,62 @@
 .bento-wrapper {
   position: relative;
   width: 100%;
-  padding: 100px 20px;
+  padding: 20px 20px 100px 20px;
   box-sizing: border-box;
   z-index: 1; /* keep content above backgrounds */
+}
+
+.bento-card.features-card {
+  overflow: visible;
+  min-height: 300px;
+}
+
+/* Features Card */
+.features-heading {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 20px 0;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: visible;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.feature-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2px 0;
+}
+
+.feature-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
 }
 
 /* Base Card Styles */

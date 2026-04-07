@@ -1,13 +1,16 @@
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
-  Calendar,
   Network,
   BarChart,
   Smartphone,
   Bell,
   LayoutTemplate,
   Link2,
+  Wallet,
+  CreditCard,
+  Receipt,
+  TrendingUp,
 } from "lucide-react";
 import "./BentoGrid.css";
 
@@ -91,15 +94,38 @@ export default function BentoGrid() {
       <div className="bento-container">
         {/* Left Column */}
         <div className="bento-col">
-          <BentoCard delay={0.1}>
-            <div className="icon-box">
-              <Calendar size={20} color="white" />
+          <BentoCard delay={0.1} className="features-card">
+            <h3 className="features-heading">Features</h3>
+            <div className="features-list">
+              <div className="feature-item">
+                <div className="feature-icon-box"><Wallet size={18} color="white" /></div>
+                <div>
+                  <p className="feature-title">Digital Wallet</p>
+                  <p className="feature-desc">Send &amp; receive money</p>
+                </div>
+              </div>
+              <div className="feature-item">
+                <div className="feature-icon-box"><CreditCard size={18} color="white" /></div>
+                <div>
+                  <p className="feature-title">Prepaid Visa Card</p>
+                  <p className="feature-desc">Online &amp; offline payments</p>
+                </div>
+              </div>
+              <div className="feature-item">
+                <div className="feature-icon-box"><Receipt size={18} color="white" /></div>
+                <div>
+                  <p className="feature-title">Bill Payments</p>
+                  <p className="feature-desc">Pay utilities easily</p>
+                </div>
+              </div>
+              <div className="feature-item">
+                <div className="feature-icon-box"><TrendingUp size={18} color="white" /></div>
+                <div>
+                  <p className="feature-title">Financial Growth</p>
+                  <p className="feature-desc">Build financial identity</p>
+                </div>
+              </div>
             </div>
-            <h3>Smart Task Scheduling</h3>
-            <p>
-              Automatically prioritize and schedule tasks based on urgency,
-              deadlines, and user preferences.
-            </p>
           </BentoCard>
 
           <BentoCard delay={0.2}>

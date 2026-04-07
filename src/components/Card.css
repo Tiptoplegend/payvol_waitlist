@@ -2,7 +2,7 @@
   /* Dimensions & Centering */
   width: 100%;
   max-width: 640px;
-  padding: 56px 48px;
+  padding: 23px 48px 28px 48px;
   margin: 0 auto;
   border-radius: 28px;
   
@@ -22,48 +22,61 @@
 .card h2 {
   font-size: 34px;
   font-weight: 500;
-  margin: 0 0 16px 0;
+  margin: 0 0 8px 0;
   letter-spacing: -0.5px;
 }
 
 .card-description {
   font-size: 16px;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.7); /* Dimmer white for secondary text */
-  margin: 0 0 40px 0;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 20px 0;
 }
 
-/* Input Group Pill Container */
-.input-group {
+/* Stacked Form */
+.waitlist-form {
   display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.4); /* Dark inner pill */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 999px; /* Pill shape */
-  padding: 6px; /* Space around the button */
-  max-width: 450px;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
   margin: 0 auto;
-  transition: border-color 0.3s;
 }
 
-.input-group:focus-within {
-  border-color: rgba(255, 255, 255, 0.5);
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
 }
 
-/* Form Input */
-.input-group input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 12px 24px;
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.03em;
+}
+
+.form-input {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 13px 18px;
   color: white;
   font-size: 15px;
+  font-family: inherit;
   outline: none;
-  min-width: 0;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-input:focus {
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 /* Join Button */
@@ -71,21 +84,15 @@
   background: white;
   color: #000;
   border: none;
-  border-radius: 999px; /* Pill shape */
-  padding: 12px 28px;
-  font-size: 14px;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 4px;
   transition: transform 0.2s, background 0.2s;
-}
-
-.join-btn:hover {
-  background: #f0f0f0;
-  transform: scale(1.02);
-}
-
-.join-btn:active {
-  transform: scale(0.98);
+  width: 60%;
+  align-self: center;
 }
 
 .success-state {
