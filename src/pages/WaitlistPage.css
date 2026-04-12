@@ -26,7 +26,7 @@
 
 .background-text {
   position: absolute;
-  top: 100vh; /* Centered visually right on the SEAM. The text will overlap the Waitlist image AND the Black background */
+  top: calc(103vh + 60px);
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 25vw;
@@ -57,7 +57,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 140px 20px;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
@@ -70,6 +70,48 @@
   margin: 20px 0 40px 0;
   color: white;
   text-align: center;
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 8px 0;
+  text-align: center;
+  max-width: 700px;
+}
+
+.hero-headline {
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  min-height: 2.5rem;
+  margin: 0;
+}
+
+.hero-subheadline {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  min-height: 1.8rem;
+  margin: 0;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  margin-left: 2px;
+  color: rgba(255, 255, 255, 0.7);
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 @media (max-width: 768px) {
@@ -86,6 +128,15 @@
   margin-bottom: 60px;
 }
 
+.social-links-footer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 140px 0 20px 0;
+}
+
 .social-links {
   display: flex;
   gap: 16px;
@@ -97,8 +148,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;

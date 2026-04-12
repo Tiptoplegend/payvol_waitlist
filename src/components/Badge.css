@@ -43,10 +43,10 @@
   font-family: var(--font-body);
   /* uses the CSS variable you defined in index.css           */
 
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   /* small — badges are supporting info, not headlines        */
 
-  font-weight: 500;
+  font-weight: 400;
   /* slightly bold — makes it legible at small sizes          */
 
   color: rgba(255, 255, 255, 0.65);

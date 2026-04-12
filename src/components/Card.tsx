@@ -5,12 +5,14 @@ import { Check } from "lucide-react";
 import "./Card.css";
 
 function Card() {
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (fullName && email && phone) {
       setIsSubmitted(true);
       confetti({
         particleCount: 150,
@@ -19,7 +21,7 @@ function Card() {
         colors: ['#ffffff', '#a855f7', '#3b82f6'],
         zIndex: 100
       });
-      console.log("Email submitted:", email);
+      console.log("Waitlist submission:", { fullName, email, phone });
     }
   };
 
@@ -41,20 +43,45 @@ function Card() {
               and insights straight to your inbox.
             </p>
 
-            <form onSubmit={handleSubmit} className="input-group">
-              <input
-                type="email"
-                placeholder="Enter email"
-                className="email-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <motion.button 
-                type="submit" 
+            <form onSubmit={handleSubmit} className="waitlist-form">
+              <div className="form-field">
+                <label className="form-label">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="form-input"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <label className="form-label">Email Address</label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="form-input"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <label className="form-label">Phone Number</label>
+                <input
+                  type="tel"
+                  placeholder="+233 (000) 000-0000"
+                  className="form-input"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </div>
+              <motion.button
+                type="submit"
                 className="join-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
               >
                 Join Waitlist
               </motion.button>
@@ -76,9 +103,9 @@ function Card() {
             >
               <Check size={32} strokeWidth={3} color="white" />
             </motion.div>
-            <h2>You're on the list!</h2>
+            <h2>You're on the list.We’ll be in touch</h2>
             <p className="card-description">
-              Keep an eye on <strong style={{color:"white"}}>{email}</strong> for exclusive updates.
+              Thanks, <strong style={{color:"white"}}>{fullName.split(" ")[0]}</strong>! Keep an eye on <strong style={{color:"white"}}>{email}</strong> for exclusive updates.
             </p>
           </motion.div>
         )}
