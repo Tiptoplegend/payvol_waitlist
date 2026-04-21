@@ -28,13 +28,12 @@ function TypewriterText({
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    let interval: ReturnType<typeof setInterval>;
+    let interval: ReturnType<typeof setInterval> | undefined;
     let index = 0;
     setDisplayed("");
     setDone(false);
 
-    timeout = setTimeout(() => {
+    const timeout = setTimeout(() => {
       interval = setInterval(() => {
         index++;
         setDisplayed(text.slice(0, index));
@@ -48,7 +47,7 @@ function TypewriterText({
 
     return () => {
       clearTimeout(timeout);
-      clearInterval(interval);
+      if (interval !== undefined) clearInterval(interval);
     };
   }, [text, speed, startDelay, onComplete]);
 

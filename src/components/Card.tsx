@@ -2,6 +2,8 @@ import { useState } from "react";
 import confetti from "canvas-confetti";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase";
 import "./Card.css";
 
 function Card() {
@@ -9,19 +11,46 @@ function Card() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (fullName && email && phone) {
+    if (!fullName.trim() || !email.trim() || !phone.trim()) return;
+
+    setSubmitError(null);
+    setIsSubmitting(true);
+    try {
+      const trimmedName = fullName.trim();
+      const trimmedEmail = email.trim().toLowerCase();
+
+      await addDoc(collection(db, "waitlist"), {
+        name: trimmedName,
+        email: trimmedEmail,
+        phone: phone.trim(),
+        joinedAt: serverTimestamp(),
+      });
+
+      // Fire-and-forget: send welcome email via server
+      fetch("/api/send-welcome", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: trimmedName, email: trimmedEmail }),
+      }).catch((err) => console.warn("Welcome email request failed:", err));
+
       setIsSubmitted(true);
       confetti({
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ffffff', '#a855f7', '#3b82f6'],
-        zIndex: 100
+        colors: ["#ffffff", "#a855f7", "#3b82f6"],
+        zIndex: 100,
       });
-      console.log("Waitlist submission:", { fullName, email, phone });
+    } catch (err) {
+      console.error("Firestore error:", err);
+      setSubmitError("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -77,13 +106,19 @@ function Card() {
                   required
                 />
               </div>
+              {submitError ? (
+                <p className="form-error" role="alert">
+                  {submitError}
+                </p>
+              ) : null}
               <motion.button
                 type="submit"
                 className="join-btn"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
+                disabled={isSubmitting}
+                whileHover={isSubmitting ? undefined : { scale: 1.02 }}
+                whileTap={isSubmitting ? undefined : { scale: 0.97 }}
               >
-                Join Waitlist
+                {isSubmitting ? "Joining…" : "Join Waitlist"}
               </motion.button>
             </form>
           </motion.div>
@@ -103,7 +138,7 @@ function Card() {
             >
               <Check size={32} strokeWidth={3} color="white" />
             </motion.div>
-            <h2>You're on the list.We’ll be in touch</h2>
+            <h2>You&apos;re on the list. We&apos;ll be in touch</h2>
             <p className="card-description">
               Thanks, <strong style={{color:"white"}}>{fullName.split(" ")[0]}</strong>! Keep an eye on <strong style={{color:"white"}}>{email}</strong> for exclusive updates.
             </p>

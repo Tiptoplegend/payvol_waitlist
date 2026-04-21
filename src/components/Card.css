@@ -79,6 +79,13 @@
   border-color: rgba(255, 255, 255, 0.45);
 }
 
+.form-error {
+  margin: 0;
+  font-size: 14px;
+  color: #fca5a5;
+  text-align: center;
+}
+
 /* Join Button */
 .join-btn {
   background: white;
@@ -93,6 +100,11 @@
   transition: transform 0.2s, background 0.2s;
   width: 60%;
   align-self: center;
+}
+
+.join-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .success-state {
