@@ -46,6 +46,7 @@ function BentoCard({
     y.set(localY / rect.height - 0.5);
   };
 
+  
   const handleMouseLeave = () => {
     setOpacity(0);
     x.set(0);
