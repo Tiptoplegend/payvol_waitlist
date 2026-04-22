@@ -85,9 +85,6 @@ function BentoCard({
 export default function BentoGrid() {
   return (
     <div className="bento-wrapper">
-      {/* Background massive text */}
-      <div className="bento-background-text">MOBILE APP</div>
-
       <div className="bento-container">
         {/* Left Column */}
         <div className="bento-col">

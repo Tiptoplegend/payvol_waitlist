@@ -93,8 +93,7 @@ function WaitlistPage() {
         style={{ y: backgroundY }}
       ></motion.div>
       <div className="bento-background"></div>
-
-      <div className="background-text">Payvol</div>
+      <div className="background-text">PayVol</div>
 
       <main className="waitlist-root">
         <motion.div

@@ -92,6 +92,7 @@
   padding: 32px;
   text-align: left;
   flex: 1;
+  min-width: 0;
 }
 
 /* The magic spotlight layer */
@@ -894,10 +895,296 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .bento-wrapper {
+    padding: 14px 14px 80px 14px;
+  }
+
   .bento-container {
     flex-direction: column;
+    gap: 16px;
   }
-  .bento-background-text {
-    font-size: 50vw;
+
+  .bento-col {
+    gap: 16px;
+  }
+
+  .bento-card {
+    padding: 22px;
+  }
+
+  .product-preview-pane {
+    max-height: none;
+    padding: 16px 20px 22px 20px;
+  }
+
+  .pp-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .pp-right {
+    gap: 12px;
+  }
+
+  .pp-visa-card {
+    width: min(100%, 340px);
+  }
+
+  .get-app-btn-container {
+    margin-top: 34px;
+    gap: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-wrapper {
+    padding: 8px 12px 60px 12px;
+  }
+
+  .bento-card {
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .bento-card h3 {
+    font-size: 16px;
+  }
+
+  .bento-card p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .product-preview-pane {
+    padding: 14px 14px 18px 14px;
+  }
+
+  .pp-title {
+    font-size: 22px;
+  }
+
+  .pp-subtitle {
+    font-size: 12px;
+  }
+
+  .pp-phone-scene {
+    transform: none;
+  }
+
+  .pp-phone-scene:hover {
+    transform: none;
+  }
+
+  .pp-phone {
+    width: min(100%, 250px);
+  }
+
+  .pp-phone::before,
+  .pp-phone::after {
+    display: none;
+  }
+
+  .pp-screen {
+    height: 370px;
+  }
+
+  .sp-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .urgency-heading {
+    font-size: 18px !important;
+  }
+
+  .get-app-btn {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  .pp-phone {
+    width: min(100%, 228px);
+    border-radius: 34px;
+  }
+
+  .pp-screen {
+    height: 340px;
+    gap: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .pp-stat-val {
+    font-size: 8.5px;
+  }
+
+  .pp-pill {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .bento-wrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .bento-card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .features-list {
+    gap: 12px;
+  }
+
+  .feature-item {
+    gap: 10px;
+  }
+
+  .feature-icon-box {
+    width: 34px;
+    height: 34px;
+  }
+
+  .feature-title {
+    font-size: 13px;
+  }
+
+  .feature-desc {
+    font-size: 12px;
+  }
+
+  .product-preview-pane {
+    padding: 12px;
+  }
+
+  .pp-label {
+    font-size: 9px;
+    padding: 2px 10px;
+  }
+
+  .pp-title {
+    font-size: 19px;
+  }
+
+  .pp-subtitle {
+    font-size: 11px;
+  }
+
+  .pp-grid {
+    gap: 14px;
+  }
+
+  .pp-phone {
+    width: min(100%, 208px);
+    border-width: 1px;
+    box-shadow:
+      0 0 0 5px rgba(255, 255, 255, 0.03),
+      18px 24px 50px rgba(0, 0, 0, 0.55),
+      0 0 36px rgba(168, 85, 247, 0.08);
+  }
+
+  .pp-island {
+    width: 56px;
+    height: 12px;
+  }
+
+  .pp-screen {
+    height: 312px;
+    padding-top: 8px;
+    padding-left: 9px;
+    padding-right: 9px;
+    gap: 7px;
+  }
+
+  .pp-card-dots {
+    gap: 4px;
+  }
+
+  .pp-dot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .pp-dot-active {
+    width: 11px;
+  }
+
+  .pp-stats-row {
+    padding: 6px 0;
+  }
+
+  .pp-stat-label {
+    font-size: 6px;
+  }
+
+  .pp-stat-val {
+    font-size: 8px;
+  }
+
+  .pp-quick-row {
+    gap: 4px;
+  }
+
+  .pp-quick-btn {
+    padding: 6px 3px;
+    border-radius: 8px;
+  }
+
+  .pp-quick-btn p {
+    font-size: 6px;
+  }
+
+  .pp-right {
+    gap: 10px;
+  }
+
+  .pp-visa-card {
+    width: 100%;
+    max-width: 260px;
+    padding: 10px 12px;
+  }
+
+  .pp-card-num {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .pp-desc-title {
+    font-size: 13px;
+  }
+
+  .pp-desc-body {
+    font-size: 11px;
+  }
+
+  .pp-pill {
+    font-size: 8px;
+    padding: 3px 7px;
+  }
+
+  .urgency-heading {
+    font-size: 16px !important;
+  }
+
+  .get-app-btn-container {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .bento-footer-name {
+    font-size: 13px;
+  }
+
+  .bento-footer-location {
+    font-size: 11px;
   }
 }

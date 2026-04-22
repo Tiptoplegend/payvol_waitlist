@@ -43,7 +43,7 @@
   font-family: var(--font-body);
   /* uses the CSS variable you defined in index.css           */
 
-  font-size: 1.5rem;
+  font-size: clamp(0.95rem, 3.8vw, 1.1rem);
   /* small — badges are supporting info, not headlines        */
 
   font-weight: 400;
@@ -55,6 +55,13 @@
   letter-spacing: 0.04em;
   /* tiny extra space between letters — improves readability  */
   /* at small sizes and gives it a polished "label" feel      */
+}
+
+@media (max-width: 640px) {
+  .badge {
+    padding: 6px 12px;
+    gap: 5px;
+  }
 }
 
 /* ── The icon wrapper ───────────────────────────────────── */

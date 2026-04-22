@@ -20,7 +20,7 @@
 }
 
 .card h2 {
-  font-size: 50px;
+  font-size: clamp(1.9rem, 8vw, 3.125rem);
   font-weight: 500;
   margin: 0 0 8px 0;
   letter-spacing: -0.5px;
@@ -91,7 +91,7 @@
   cursor: pointer;
   margin-top: 4px;
   transition: transform 0.2s, background 0.2s;
-  width: 60%;
+  width: min(100%, 260px);
   align-self: center;
 }
 
@@ -113,4 +113,31 @@
   justify-content: center;
   margin-bottom: 24px;
   box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 18px 16px 22px 16px;
+    border-radius: 20px;
+  }
+
+  .card-description {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .waitlist-form {
+    gap: 12px;
+  }
+
+  .form-input {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .join-btn {
+    width: 100%;
+    padding: 13px 18px;
+    font-size: 14px;
+  }
 }
