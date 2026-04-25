@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const faqs = [
   {
@@ -32,35 +33,55 @@ export default function FAQs() {
   return (
     <section id="FAQs" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-xl mx-auto">
-          <span className="inline-flex w-fit py-1.5 px-4 text-sm font-medium rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>FAQs</span>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-xl mx-auto"
+        >
+          <span className="inline-flex w-fit py-1.5 px-4 text-xs font-bold tracking-widest uppercase rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>FAQs</span>
           <h2 className="text-3xl md:text-4xl font-semibold mt-4">
             Frequently Asked Questions
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="mt-14 bg-white rounded-xl divide-y divide-gray-200 shadow-sm">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-14 bg-white rounded-xl divide-y divide-gray-200 shadow-sm"
+        >
           {faqs.map((faq, i) => (
             <div key={i} className="overflow-hidden">
               <button
-                className="flex justify-between items-center px-5 py-4 w-full font-semibold text-lg text-left gap-4"
+                className="flex justify-between items-center px-5 py-4 w-full font-semibold text-lg text-left gap-4 hover:bg-gray-50 transition-colors"
                 onClick={() => toggle(i)}
               >
                 <span>{faq.q}</span>
                 <ChevronDown
                   className={`h-4 w-4 shrink-0 transition-transform duration-300 ${
-                    openIndex === i ? 'rotate-180' : ''
+                    openIndex === i ? 'rotate-180 text-primary' : 'text-gray-400'
                   }`}
                 />
               </button>
-              {openIndex === i && (
-                <div className="px-5 pb-5">
-                  <p className="text-muted text-base font-normal">{faq.a}</p>
-                </div>
-              )}
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="px-5 overflow-hidden"
+                  >
+                    <p className="text-muted text-base font-normal pb-5">{faq.a}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

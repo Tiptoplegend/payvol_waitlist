@@ -1,3 +1,5 @@
+import { FaFacebook, FaXTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa6'
+
 export default function Footer() {
   const year = new Date().getFullYear()
 
@@ -12,13 +14,13 @@ export default function Footer() {
             <p className="text-white/70 text-sm leading-6">Smarter payments.<br />Brighter future.</p>
             <div className="flex gap-3 mt-5">
               {[
-                { label: 'Facebook', file: 'facebook.png', href: '#' },
-                { label: 'X', file: 'X.png', href: 'https://x.com/PayVol' },
-                { label: 'Instagram', file: 'instagram.png', href: 'https://www.instagram.com/payvolhq?igsh=d2g2OGRxN29iZmZ3' },
-                { label: 'LinkedIn', file: 'in.png', href: '#' },
-              ].map(({ label, file, href }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-9 h-9 rounded-full flex items-center justify-center hover:opacity-80 transition-all">
-                  <img src={`/assets/images/${file}`} alt={label} className="w-9 h-9 object-contain" />
+                { label: 'Facebook', Icon: FaFacebook, href: '#' },
+                { label: 'X', Icon: FaXTwitter, href: 'https://x.com/PayVol' },
+                { label: 'Instagram', Icon: FaInstagram, href: 'https://www.instagram.com/payvolhq?igsh=d2g2OGRxN29iZmZ3' },
+                { label: 'LinkedIn', Icon: FaLinkedin, href: '#' },
+              ].map(({ label, Icon, href }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-9 h-9 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/20 transition-all group">
+                  <Icon className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
                 </a>
               ))}
             </div>

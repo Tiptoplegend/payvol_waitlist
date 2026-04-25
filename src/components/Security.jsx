@@ -1,4 +1,5 @@
 import { Lock, ShieldCheck, Fingerprint, CloudUpload } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const features = [
   {
@@ -27,24 +28,37 @@ export default function Security() {
   return (
     <section id="about" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center mb-14">
-          <span className="inline-flex w-fit py-1.5 px-4 text-sm font-medium rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-2xl mx-auto text-center mb-14"
+        >
+          <span className="inline-flex w-fit py-1.5 px-4 text-xs font-bold tracking-widest uppercase rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>
             SECURITY YOU CAN TRUST
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-dark mt-3">
             Your security is our priority
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {features.map(({ icon: Icon, title, desc }, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center">
-                <Icon className="w-7 h-7 text-dark" strokeWidth={1.5} />
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              key={idx} 
+              className="flex flex-col items-center text-center gap-4 group cursor-pointer"
+            >
+              <div className="w-16 h-16 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] group-hover:shadow-[0_10px_30px_rgba(1,28,97,0.06)] group-hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+                <Icon className="w-7 h-7 text-dark group-hover:text-primary transition-colors" strokeWidth={1.5} />
               </div>
-              <h3 className="text-sm font-bold text-dark">{title}</h3>
+              <h3 className="text-sm font-bold text-dark group-hover:text-primary transition-colors">{title}</h3>
               <p className="text-sm text-muted leading-6">{desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

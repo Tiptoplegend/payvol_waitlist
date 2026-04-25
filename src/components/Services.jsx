@@ -1,4 +1,5 @@
 import { Send, CreditCard, BarChart2, ShieldCheck } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const services = [
   {
@@ -27,24 +28,37 @@ export default function Services() {
   return (
     <section id="features" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center mb-14">
-          <span className="inline-flex w-fit py-1.5 px-4 text-sm font-medium rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-2xl mx-auto text-center mb-14"
+        >
+          <span className="inline-flex w-fit py-1.5 px-4 text-xs font-bold tracking-widest uppercase rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>
             ALL IN ONE FINANCE
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-dark mt-3 leading-snug">
             Everything you need in<br />one powerful app
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8">
           {services.map(({ icon: Icon, title, desc }, idx) => (
-            <div key={idx} className="text-center flex flex-col items-center gap-4">
-              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gray-100">
-                <Icon className="h-8 w-8 text-dark" strokeWidth={1.5} />
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              key={idx} 
+              className="text-center flex flex-col items-center gap-4 group cursor-pointer"
+            >
+              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 group-hover:bg-blue-50 group-hover:-translate-y-2 group-hover:shadow-[0_15px_40px_rgba(1,28,97,0.08)] transition-all duration-300">
+                <Icon className="h-8 w-8 text-dark group-hover:text-primary transition-colors" strokeWidth={1.5} />
               </div>
               <h3 className="text-base font-bold text-dark">{title}</h3>
               <p className="text-sm text-muted leading-6">{desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 

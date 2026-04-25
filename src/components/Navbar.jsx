@@ -70,9 +70,9 @@ export default function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize transition-all duration-300 hover:text-primary ${
+                    className={`relative inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize transition-all duration-300 hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full ${
                       activeSection === link.href.slice(1)
-                        ? 'text-primary'
+                        ? 'text-primary after:w-full'
                         : isSticky
                         ? 'text-dark'
                         : 'text-black'
@@ -88,7 +88,7 @@ export default function Navbar() {
           <div className="ml-auto shrink hidden lg:inline-flex gap-2">
             <a
               href="#"
-              className="btn-primary py-2 px-6 inline-flex items-center gap-2 rounded-md text-base text-white transition-all duration-500 font-medium"
+              className="btn-primary py-2 px-6 inline-flex items-center gap-2 rounded-md text-base text-white font-medium hover:scale-105 active:scale-95 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <span>Join Waitlist</span>
             </a>
