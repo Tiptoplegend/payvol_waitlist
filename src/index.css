@@ -22,11 +22,11 @@
   }
 
   .mockup-img {
-    mix-blend-mode: multiply;
     image-rendering: -webkit-optimize-contrast;
-    transform: translateZ(0);
+    image-rendering: crisp-edges;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    filter: contrast(1.02);
   }
 
   .cta-gradient {
