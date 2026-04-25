@@ -1,14 +1,39 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Loader2 } from 'lucide-react'
+import { db } from '../firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 export default function Hero() {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (email) setIsSubmitted(true)
+    if (!email) return
+    
+    setIsLoading(true)
+    try {
+      // Extract name from email (e.g. john.doe@email.com -> John Doe)
+      const nameMatch = email.match(/^([^@]*)@/);
+      const rawName = nameMatch ? nameMatch[1] : '';
+      const formattedName = rawName.replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+      await addDoc(collection(db, 'waitlist'), {
+        name: formattedName,
+        email: email,
+        source: 'hero',
+        joinedAt: new Date().toISOString(),
+        createdAt: serverTimestamp()
+      })
+      setIsSubmitted(true)
+    } catch (error) {
+      console.error("Error adding document: ", error)
+      alert("Something went wrong saving your email. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -17,8 +42,8 @@ export default function Hero() {
       id="home"
     >
       {/* Precision SVG Background replicating the original design */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <svg viewBox="0 0 1440 800" className="absolute top-0 right-0 w-full h-full object-cover object-right-bottom" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <div className="absolute bottom-0 md:top-0 left-0 w-full h-[20%] md:h-full overflow-hidden pointer-events-none z-0">
+        <svg viewBox="0 0 1440 800" className="absolute bottom-0 md:top-0 right-0 w-full h-full object-cover object-right-bottom" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
               <circle cx="3" cy="3" r="2" fill="rgba(255,255,255,0.12)"/>
@@ -101,8 +126,8 @@ export default function Hero() {
                       required
                       className="flex-1 h-full px-4 rounded-md border border-gray-300 text-sm outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                     />
-                    <button type="submit" className="bg-[#011c61] h-full px-6 rounded-md text-sm text-white font-medium whitespace-nowrap hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                      Join Waitlist
+                    <button type="submit" disabled={isLoading} className="bg-[#011c61] h-full px-6 rounded-md text-sm text-white font-medium whitespace-nowrap hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed flex items-center justify-center min-w-[120px]">
+                      {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Join Waitlist'}
                     </button>
                   </motion.form>
                 ) : (
@@ -149,14 +174,14 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative flex items-center justify-center min-h-[560px]"
+            className="relative flex items-center justify-center min-h-[400px] md:min-h-[560px]"
           >
             <motion.img
               animate={{ y: [0, -15, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               src="/assets/images/new-mockup.jpg"
               alt="PayVol App Mockup"
-              className="relative z-10 h-[680px] max-w-full object-contain rounded-[2.2rem] shadow-[0_20px_50px_rgba(1,28,97,0.3)] border-[7px] border-gray-100/50"
+              className="relative z-10 h-[450px] md:h-[680px] max-w-full object-contain rounded-[1.8rem] md:rounded-[2.2rem] shadow-[0_20px_50px_rgba(1,28,97,0.3)] border-[5px] md:border-[7px] border-gray-100/50"
             />
           </motion.div>
 

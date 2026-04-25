@@ -1,14 +1,39 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Loader2 } from 'lucide-react'
+import { db } from '../firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 export default function CTABanner() {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (email) setIsSubmitted(true)
+    if (!email) return
+    
+    setIsLoading(true)
+    try {
+      // Extract name from email (e.g. john.doe@email.com -> John Doe)
+      const nameMatch = email.match(/^([^@]*)@/);
+      const rawName = nameMatch ? nameMatch[1] : '';
+      const formattedName = rawName.replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+      await addDoc(collection(db, 'waitlist'), {
+        name: formattedName,
+        email: email,
+        source: 'cta_banner',
+        joinedAt: new Date().toISOString(),
+        createdAt: serverTimestamp()
+      })
+      setIsSubmitted(true)
+    } catch (error) {
+      console.error("Error adding document: ", error)
+      alert("Something went wrong saving your email. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -55,9 +80,10 @@ export default function CTABanner() {
                     />
                     <button
                       type="submit"
-                      className="btn-blue h-full px-6 rounded-md text-sm text-white font-medium whitespace-nowrap hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                      disabled={isLoading}
+                      className="btn-blue h-full px-6 rounded-md text-sm text-white font-medium whitespace-nowrap hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed flex items-center justify-center min-w-[120px]"
                     >
-                      Join Waitlist
+                      {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Join Waitlist'}
                     </button>
                   </motion.form>
                 ) : (
