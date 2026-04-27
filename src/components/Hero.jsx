@@ -41,6 +41,9 @@ export default function Hero() {
       className="relative pt-28 pb-16 overflow-x-hidden bg-white"
       id="home"
     >
+      {/* Right-side blue fill — removes white showing behind phone */}
+      <div className="absolute top-0 right-0 h-full w-[55%] pointer-events-none z-0" style={{ background: 'linear-gradient(to right, transparent, #3b82f6 30%, #1d4ed8 60%, #011c61 100%)' }} />
+
       {/* Precision SVG Background replicating the original design */}
       <div className="absolute bottom-0 md:top-0 left-0 w-full h-[20%] md:h-full overflow-hidden pointer-events-none z-0">
         <svg viewBox="0 0 1440 800" className="absolute bottom-0 md:top-0 right-0 w-full h-full object-cover object-right-bottom" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
@@ -99,7 +102,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-base text-muted leading-7 max-w-md"
             >
-              PayVol is the all-in-one finance app for seamless payments, money transfers, virtual cards, budgeting, and more. Built for a better way to manage money.
+             Payvol is redefining everyday finance by combining payments, cards, financial insights, and crypto access into one unified platform. Our mission is to transform how people interact with money — turning daily transactions into a pathway for greater financial access and smarter decision-making.
             </motion.p>
 
             <motion.div 
@@ -179,9 +182,9 @@ export default function Hero() {
             <motion.img
               animate={{ y: [0, -15, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              src="/assets/images/new-mockup.jpg"
+              src="/assets/images/mockup.png"
               alt="PayVol App Mockup"
-              className="relative z-10 h-[450px] md:h-[680px] max-w-full object-contain rounded-[1.8rem] md:rounded-[2.2rem] shadow-[0_20px_50px_rgba(1,28,97,0.3)] border-[5px] md:border-[7px] border-gray-100/50"
+              className="relative z-10 h-[450px] md:h-[680px] max-w-full object-contain shadow-[0_20px_50px_rgba(1,28,97,0.3)]"
             />
           </motion.div>
 
