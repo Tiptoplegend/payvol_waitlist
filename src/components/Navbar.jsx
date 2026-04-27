@@ -47,7 +47,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex lg:flex-nowrap flex-wrap items-center">
           <a className="flex items-center" href="#home">
-            <img src="/assets/images/PV-logo.png" className="h-20 w-auto object-contain" alt="Logo" />
+            <img src="/assets/images/PV-logo.png" className="h-18 w-auto object-contain" alt="Logo" />
           </a>
 
           <div className="lg:hidden flex items-center ml-auto px-2.5">
