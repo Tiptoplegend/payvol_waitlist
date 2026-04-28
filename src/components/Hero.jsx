@@ -87,9 +87,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-7xl text-dark font-bold leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl text-dark font-bold leading-tight"
             >
-              Smarter payments.<br />
+              Smarter payments<br />
               <span className="text-blue-500">Brighter future.</span>
             </motion.h1>
 

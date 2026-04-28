@@ -5,14 +5,8 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="footer-bg relative overflow-hidden">
-      <img
-        src="/assets/images/home/bg-5.png"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-screen pointer-events-none select-none"
-      />
-      <div className="container mx-auto px-4 pt-16 pb-10 relative z-10">
+    <footer className="footer-bg">
+      <div className="container mx-auto px-4 pt-16 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
           {/* Brand */}
@@ -37,14 +31,8 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Company</h4>
             <ul className="space-y-3">
-              {[
-                { label: 'About Us', href: '#about' },
-                { label: 'Features', href: '#features' },
-                { label: 'Security', href: '#security' },
-                { label: 'FAQs', href: '#faqs' },
-                { label: 'Contact', href: '#contact' },
-              ].map(({ label, href }) => (
-                <li key={label}><a href={href} className="text-white/70 text-sm hover:text-white transition-colors">{label}</a></li>
+              {['About Us', 'Features', 'Security', 'FAQs', 'Contact'].map(l => (
+                <li key={l}><a href="#" className="text-white/70 text-sm hover:text-white transition-colors">{l}</a></li>
               ))}
             </ul>
           </div>
@@ -71,7 +59,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div id="contact">
+          <div>
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/70 text-sm">
