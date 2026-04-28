@@ -5,8 +5,14 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="footer-bg">
-      <div className="container mx-auto px-4 pt-16 pb-10">
+    <footer className="footer-bg relative overflow-hidden">
+      <img
+        src="/assets/images/home/bg-5.png"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-screen pointer-events-none select-none"
+      />
+      <div className="container mx-auto px-4 pt-16 pb-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
           {/* Brand */}
