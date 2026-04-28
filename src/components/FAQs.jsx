@@ -31,7 +31,7 @@ export default function FAQs() {
   const toggle = i => setOpenIndex(openIndex === i ? -1 : i)
 
   return (
-    <section id="FAQs" className="py-20 bg-gray-50">
+    <section id="faqs" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}

@@ -31,8 +31,14 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Company</h4>
             <ul className="space-y-3">
-              {['About Us', 'Features', 'Security', 'FAQs', 'Contact'].map(l => (
-                <li key={l}><a href="#" className="text-white/70 text-sm hover:text-white transition-colors">{l}</a></li>
+              {[
+                { label: 'About Us', href: '#about' },
+                { label: 'Features', href: '#features' },
+                { label: 'Security', href: '#security' },
+                { label: 'FAQs', href: '#faqs' },
+                { label: 'Contact', href: '#contact' },
+              ].map(({ label, href }) => (
+                <li key={label}><a href={href} className="text-white/70 text-sm hover:text-white transition-colors">{label}</a></li>
               ))}
             </ul>
           </div>
@@ -59,7 +65,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div id="contact">
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/70 text-sm">

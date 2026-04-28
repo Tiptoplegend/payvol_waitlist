@@ -406,7 +406,7 @@ export default function LegalPage() {
             Back to Home
           </Link>
           <div className="flex items-center gap-3 mb-2">
-            <img src="/assets/images/PV-logo.png" alt="PayVol" className="h-16 brightness-0 invert" />
+            <img src="/assets/images/PV-logo.png" alt="PayVol" className="h-24 brightness-0 invert" />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mt-4">{doc.title}</h1>
           <p className="text-white/50 text-sm mt-2">Status: {doc.lastUpdated}</p>
