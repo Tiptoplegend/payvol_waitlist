@@ -10,7 +10,7 @@ const services = [
   {
     icon: CreditCard,
     title: 'Virtual Cards',
-    desc: 'Create virtual cards for online shopping and subscriptions.',
+    desc: 'We Offer virtual and physical cards for online shopping and subscriptions.',
   },
   {
     icon: BarChart2,

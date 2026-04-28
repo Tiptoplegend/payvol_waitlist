@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Services from './components/Services'
@@ -7,8 +8,9 @@ import FAQs from './components/FAQs'
 import CTABanner from './components/CTABanner'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
+import LegalPage from './pages/LegalPage'
 
-function App() {
+function HomePage() {
   return (
     <>
       <Navbar />
@@ -23,6 +25,17 @@ function App() {
       <Footer />
       <BackToTop />
     </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/legal/:slug" element={<LegalPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
