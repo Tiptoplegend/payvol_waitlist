@@ -9,7 +9,7 @@ const services = [
   },
   {
     icon: CreditCard,
-    title: 'Virtual/Physical Cards',
+    title: 'Virtual & Physical Cards',
     desc: 'We Offer virtual and physical cards for online shopping and subscriptions.',
   },
   {
