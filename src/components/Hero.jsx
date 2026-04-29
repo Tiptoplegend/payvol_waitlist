@@ -87,9 +87,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-7xl text-dark font-bold leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl text-dark font-bold leading-tight"
             >
-              Smarter payments.<br />
+              Smarter payments<br />
               <span className="text-blue-500">Brighter future.</span>
             </motion.h1>
 
@@ -99,7 +99,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-base text-muted leading-7 max-w-md"
             >
-              PayVol is the all-in-one finance app for seamless payments, money transfers, virtual cards, budgeting, and more. Built for a better way to manage money.
+             Payvol is redefining everyday finance by combining payments, cards, financial insights, and crypto access into one unified platform. Our mission is to transform how people interact with money — turning daily transactions into a pathway for greater financial access and smarter decision-making.
             </motion.p>
 
             <motion.div 
@@ -179,9 +179,9 @@ export default function Hero() {
             <motion.img
               animate={{ y: [0, -15, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              src="/assets/images/new-mockup.jpg"
+              src="/assets/images/mockup.png"
               alt="PayVol App Mockup"
-              className="relative z-10 h-[450px] md:h-[680px] max-w-full object-contain rounded-[1.8rem] md:rounded-[2.2rem] shadow-[0_20px_50px_rgba(1,28,97,0.3)] border-[5px] md:border-[7px] border-gray-100/50"
+              className="relative z-10 h-[450px] md:h-[680px] max-w-full object-contain drop-shadow-[0_20px_50px_rgba(1,28,97,0.3)]"
             />
           </motion.div>
 

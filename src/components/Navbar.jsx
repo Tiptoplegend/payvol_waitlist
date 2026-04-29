@@ -40,14 +40,14 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-500 py-2 shadow-md lg:shadow-none ${
+      className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-500 shadow-md lg:shadow-none ${
         isSticky ? 'bg-white shadow-md' : 'bg-white lg:bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex lg:flex-nowrap flex-wrap items-center">
           <a className="flex items-center" href="#home">
-            <img src="/assets/images/PV-logo.png" className="h-16 w-auto object-contain" alt="Logo" />
+            <img src="/assets/images/PV-logo.png" className="h-24 w-auto object-contain" alt="Logo" />
           </a>
 
           <div className="lg:hidden flex items-center ml-auto px-2.5">
