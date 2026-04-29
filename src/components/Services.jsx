@@ -1,4 +1,4 @@
-import { Send, CreditCard, BarChart2, ShieldCheck } from 'lucide-react'
+import { Send, CreditCard, BarChart2, ShieldCheck, Bitcoin } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const services = [
@@ -9,8 +9,13 @@ const services = [
   },
   {
     icon: CreditCard,
-    title: 'Virtual Cards',
+    title: 'Virtual & Physical Cards',
     desc: 'We Offer virtual and physical cards for online shopping and subscriptions.',
+  },
+  {
+    icon: Bitcoin,
+    title: 'Crypto Access',
+    desc: 'Buy, sell, and manage crypto assets seamlessly alongside your everyday finances.',
   },
   {
     icon: BarChart2,
@@ -20,7 +25,7 @@ const services = [
   {
     icon: ShieldCheck,
     title: 'Secure & Reliable',
-    desc: 'Bank-level security to keep your money and data always protected.',
+    desc: 'Bank-level security to keep your money\nand data always protected.',
   },
 ]
 
@@ -51,13 +56,13 @@ export default function Services() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               key={idx} 
-              className="text-center flex flex-col items-center gap-4 group cursor-pointer"
+              className={`text-center flex flex-col items-center gap-4 group cursor-pointer ${idx === services.length - 1 ? 'lg:col-start-2 lg:col-span-2' : ''}`}
             >
               <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 group-hover:bg-blue-50 group-hover:-translate-y-2 group-hover:shadow-[0_15px_40px_rgba(1,28,97,0.08)] transition-all duration-300">
                 <Icon className="h-8 w-8 text-dark group-hover:text-primary transition-colors" strokeWidth={1.5} />
               </div>
               <h3 className="text-base font-bold text-dark">{title}</h3>
-              <p className="text-sm text-muted leading-6">{desc}</p>
+              <p className="text-sm text-muted leading-6 whitespace-pre-line">{desc}</p>
             </motion.div>
           ))}
         </div>
