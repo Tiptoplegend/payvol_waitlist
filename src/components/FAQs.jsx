@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const faqs = [
   {
@@ -31,57 +30,52 @@ export default function FAQs() {
   const toggle = i => setOpenIndex(openIndex === i ? -1 : i)
 
   return (
-    <section id="faqs" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-xl mx-auto"
-        >
-          <span className="inline-flex w-fit py-1.5 px-4 text-xs font-bold tracking-widest uppercase rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>FAQs</span>
-          <h2 className="text-3xl md:text-4xl font-semibold mt-4">
-            Frequently Asked Questions
-          </h2>
-        </motion.div>
+    <section id="faqs" className="py-28 bg-bgLightCard dark:bg-bgCard transition-colors duration-300">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="section-label">Support</span>
+            <h2 className="section-heading">
+              Frequently Asked Questions
+            </h2>
+          </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-14 bg-white rounded-xl divide-y divide-gray-200 shadow-sm"
-        >
-          {faqs.map((faq, i) => (
-            <div key={i} className="overflow-hidden">
-              <button
-                className="flex justify-between items-center px-5 py-4 w-full font-semibold text-lg text-left gap-4 hover:bg-gray-50 transition-colors"
-                onClick={() => toggle(i)}
-              >
-                <span>{faq.q}</span>
-                <ChevronDown
-                  className={`h-4 w-4 shrink-0 transition-transform duration-300 ${
-                    openIndex === i ? 'rotate-180 text-primary' : 'text-gray-400'
-                  }`}
-                />
-              </button>
-              <AnimatePresence>
-                {openIndex === i && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-5 overflow-hidden"
+          <div className="flex flex-col">
+            {faqs.map((faq, i) => {
+              const isOpen = openIndex === i
+              return (
+                <div
+                  key={i}
+                  className={`border-b border-black/[0.06] dark:border-white/[0.06] ${i === 0 ? 'border-t' : ''} transition-colors duration-300`}
+                >
+                  <button
+                    className="flex justify-between items-center w-full py-6 text-left focus:outline-none group"
+                    onClick={() => toggle(i)}
                   >
-                    <p className="text-muted text-base font-normal pb-5">{faq.a}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </motion.div>
+                    <span className="text-[15px] font-semibold text-textLight dark:text-white pr-8 group-hover:text-primary transition-colors duration-200">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-black/30 dark:text-white/30 shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                      strokeWidth={2}
+                    />
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isOpen ? 'max-h-60 pb-6' : 'max-h-0'
+                    }`}
+                  >
+                    <p className="text-textLightMuted dark:text-textMuted leading-relaxed text-sm pr-12 transition-colors duration-300">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </section>
   )

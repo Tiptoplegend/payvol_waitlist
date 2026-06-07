@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle2, Loader2 } from 'lucide-react'
+import { Loader2, ArrowRight } from 'lucide-react'
 import { db } from '../firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
@@ -15,7 +14,6 @@ export default function CTABanner() {
     
     setIsLoading(true)
     try {
-      // Extract name from email (e.g. john.doe@email.com -> John Doe)
       const nameMatch = email.match(/^([^@]*)@/);
       const rawName = nameMatch ? nameMatch[1] : '';
       const formattedName = rawName.replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -37,81 +35,56 @@ export default function CTABanner() {
   }
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="cta-gradient rounded-2xl px-6 py-10 md:px-12 md:py-16 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden shadow-2xl"
-        >
-          {/* Decorative circles */}
-          <div className="absolute w-64 h-64 rounded-full bg-blue-500/10 -top-16 -right-16 pointer-events-none"></div>
-          <div className="absolute w-40 h-40 rounded-full bg-blue-400/10 bottom-0 left-1/2 pointer-events-none"></div>
-          <div className="max-w-sm">
-            <h2 className="text-3xl font-bold text-white leading-snug">
-              Be the first to experience the future of finance.
+    <section id="join-waitlist" className="py-28 bg-bgLight dark:bg-bgDark transition-colors duration-300">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="relative bg-bgLightCard dark:bg-bgCard border border-black/[0.06] dark:border-white/[0.06] rounded-xl p-12 md:p-20 overflow-hidden transition-colors duration-300">
+          {/* Subtle corner glow */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/[0.04] blur-[100px] rounded-full pointer-events-none" />
+          
+          <div className="relative z-10 max-w-2xl mx-auto text-center">
+            <span className="section-label">Waitlist</span>
+            <h2 className="section-heading mb-5">
+              Ready to experience the<br />future of finance?
             </h2>
-            <p className="text-white/70 text-sm mt-3 leading-6">
+            <p className="text-textLightMuted dark:text-textMuted text-lg mb-10 leading-relaxed transition-colors duration-300">
               Join the PayVol waitlist today and get early access when we launch.
             </p>
-          </div>
 
-          <div className="flex flex-col gap-4 w-full max-w-md">
-            <div className="h-[50px] relative">
-              <AnimatePresence mode="wait">
-                {!isSubmitted ? (
-                  <motion.form
-                    key="form"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    onSubmit={handleSubmit}
-                    className="flex items-center gap-2 absolute inset-0"
+            <div className="max-w-md mx-auto">
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    required
+                    className="input-dark flex-1"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap min-w-[150px]"
                   >
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      placeholder="Enter your email address"
-                      required
-                      className="flex-1 h-full px-4 rounded-md text-sm outline-none border border-white/20 bg-white/10 text-white placeholder-white/50 focus:border-white/50 focus:ring-2 focus:ring-blue-400 transition-colors"
-                    />
-                    <button
-                      type="submit"
-                      disabled={isLoading}
-                      className="btn-blue h-full px-6 rounded-md text-sm text-white font-medium whitespace-nowrap hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed flex items-center justify-center min-w-[120px]"
-                    >
-                      {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Join Waitlist'}
-                    </button>
-                  </motion.form>
-                ) : (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    className="absolute inset-0 flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-5 rounded-md"
-                  >
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
-                    <span className="text-sm font-medium">You're on the list! We'll be in touch.</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-2">
-                <img src="/assets/images/user/client-03.jpg" className="h-8 w-8 rounded-full border-2 border-white object-cover" alt="user" />
-                <img src="/assets/images/user/client-04.jpg" className="h-8 w-8 rounded-full border-2 border-white object-cover" alt="user" />
-                <img src="/assets/images/user/client-05.jpg" className="h-8 w-8 rounded-full border-2 border-white object-cover" alt="user" />
-                <img src="/assets/images/user/client-07.jpg" className="h-8 w-8 rounded-full border-2 border-white object-cover" alt="user" />
-              </div>
-              <p className="text-white/70 text-sm">Join 5,000+ others on the waitlist</p>
+                    {isLoading ? (
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    ) : (
+                      <>
+                        Join Waitlist
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              ) : (
+                <div className="flex items-center justify-center gap-3 bg-primary/[0.08] border border-primary/20 text-primary px-6 py-4 rounded-lg">
+                  <span className="text-[15px] font-medium">You're on the list — we'll be in touch soon.</span>
+                </div>
+              )}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
-
   )
 }

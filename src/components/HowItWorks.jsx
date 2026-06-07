@@ -1,69 +1,53 @@
-import { Mail, Bell, Smartphone } from 'lucide-react'
-import { motion } from 'framer-motion'
-
 const steps = [
   {
-    icon: Mail,
     number: '01',
-    title: 'Join the Waitlist',
-    desc: 'Enter your email and be among the first to access PayVol.',
+    title: 'Create Your Account',
+    desc: 'Sign up in under two minutes. Verify your identity and you\'re ready to go.',
   },
   {
-    icon: Bell,
     number: '02',
-    title: 'Get Notified',
-    desc: "We'll notify you when PayVol is ready for early access.",
+    title: 'Connect Your Accounts',
+    desc: 'Link Mobile Money, bank accounts, and crypto wallets — all in one place.',
   },
   {
-    icon: Smartphone,
     number: '03',
-    title: 'Experience PayVol',
-    desc: 'Enjoy seamless payments, smart features, and total financial freedom.',
+    title: 'Manage Everything',
+    desc: 'Send, spend, save, and track your finances from a single dashboard.',
   },
 ]
 
 export default function HowItWorks() {
   return (
-    <section id="security" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto text-center mb-14"
-        >
-          <span className="inline-flex w-fit py-1.5 px-4 text-xs font-bold tracking-widest uppercase rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>
-            HOW IT WORKS
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-dark mt-3">
-            Simple, fast, and secure
+    <section id="roadmap" className="py-28 bg-bgLight dark:bg-bgDark transition-colors duration-300">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="max-w-2xl mb-16">
+          <span className="section-label">How It Works</span>
+          <h2 className="section-heading">
+            Get started in minutes
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 relative">
-          {steps.map(({ icon: Icon, number, title, desc }, idx) => (
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.2 }}
-              key={idx} 
-              className="flex flex-col items-center text-center relative group"
-            >
-              {idx < steps.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-[60%] w-full border-t-2 border-dashed border-gray-200 z-0" />
-              )}
-              <div className="relative z-10 w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Icon className="w-8 h-8 text-dark group-hover:text-primary transition-colors" strokeWidth={1.5} />
-                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center">
-                  {number}
+        <div className="max-w-4xl">
+          <div className="flex flex-col">
+            {steps.map((step, idx) => (
+              <div
+                key={idx}
+                className={`flex items-start gap-8 md:gap-12 py-10 ${
+                  idx !== steps.length - 1 ? 'border-b border-black/[0.06] dark:border-white/[0.06]' : ''
+                }`}
+              >
+                {/* Step number — large, muted, typographic */}
+                <span className="text-[3.5rem] md:text-[4.5rem] font-bold leading-none text-black/[0.04] dark:text-white/[0.06] font-heading select-none shrink-0 -mt-2 transition-colors duration-300">
+                  {step.number}
                 </span>
+
+                <div className="pt-1">
+                  <h3 className="text-xl font-semibold text-textLight dark:text-white mb-2 transition-colors duration-300">{step.title}</h3>
+                  <p className="text-textLightMuted dark:text-textMuted text-[15px] leading-relaxed max-w-md transition-colors duration-300">{step.desc}</p>
+                </div>
               </div>
-              <h3 className="text-base font-bold text-dark mt-3">{title}</h3>
-              <p className="text-sm text-muted mt-2 max-w-[200px]">{desc}</p>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

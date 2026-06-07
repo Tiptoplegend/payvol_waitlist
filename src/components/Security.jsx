@@ -1,65 +1,63 @@
-import { Lock, ShieldCheck, Fingerprint, CloudUpload } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 
-const features = [
+const benefits = [
   {
-    icon: Lock,
-    title: 'End-to-end Encryption',
-    desc: 'Your data is encrypted and secure at all times.',
+    title: 'Priority Access',
+    desc: 'Be among the very first to experience PayVol when we launch.',
   },
   {
-    icon: ShieldCheck,
-    title: 'PCI DSS Compliant',
-    desc: 'We follow global standards for payment card security.',
+    title: 'First Access to Cards',
+    desc: 'Get virtual and physical cards before anyone else.',
   },
   {
-    icon: Fingerprint,
-    title: 'Biometric Protection',
-    desc: 'Secure access using fingerprint and face recognition.',
+    title: 'Early Crypto Features',
+    desc: 'Access crypto functionality ahead of the public release.',
   },
   {
-    icon: CloudUpload,
-    title: 'Secure Cloud Backup',
-    desc: 'Your data is safely backed up and always protected.',
+    title: 'Exclusive Rewards',
+    desc: 'Special benefits reserved only for early supporters.',
   },
 ]
 
 export default function Security() {
   return (
-    <section id="about" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto text-center mb-14"
-        >
-          <span className="inline-flex w-fit py-1.5 px-4 text-xs font-bold tracking-widest uppercase rounded-full border border-blue-200" style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}>
-            SECURITY YOU CAN TRUST
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-dark mt-3">
-            Your security is our priority
-          </h2>
-        </motion.div>
+    <section id="security" className="py-28 bg-bgLightCard dark:bg-bgCard transition-colors duration-300">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {features.map(({ icon: Icon, title, desc }, idx) => (
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              key={idx} 
-              className="flex flex-col items-center text-center gap-4 group cursor-pointer"
+          {/* Left — Heading block */}
+          <div className="lg:col-span-5">
+            <span className="section-label">Early Access</span>
+            <h2 className="section-heading mb-5">
+              Join the waitlist today
+            </h2>
+            <p className="text-textLightMuted dark:text-textMuted text-lg leading-relaxed mb-8 transition-colors duration-300">
+              Get ahead of the curve. Secure your spot and unlock exclusive benefits when PayVol launches.
+            </p>
+            <a
+              href="#join-waitlist"
+              className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all duration-200"
             >
-              <div className="w-16 h-16 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] group-hover:shadow-[0_10px_30px_rgba(1,28,97,0.06)] group-hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
-                <Icon className="w-7 h-7 text-dark group-hover:text-primary transition-colors" strokeWidth={1.5} />
+              Join now
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* Right — Benefits in a 2x2 grid, no icon boxes */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-px bg-black/[0.06] dark:bg-white/[0.06] rounded-xl overflow-hidden border border-black/[0.06] dark:border-white/[0.06] transition-colors duration-300">
+            {benefits.map((benefit, idx) => (
+              <div
+                key={idx}
+                className="bg-bgLight dark:bg-bgDark p-8 transition-colors duration-300 hover:bg-bgLightCardHover dark:hover:bg-bgCardHover"
+              >
+                {/* Simple ordinal, not an icon */}
+                <span className="text-xs font-mono text-black/20 dark:text-white/20 mb-4 block transition-colors duration-300">0{idx + 1}</span>
+                <h3 className="text-lg font-semibold text-textLight dark:text-white mb-2 transition-colors duration-300">{benefit.title}</h3>
+                <p className="text-textLightMuted dark:text-textMuted text-sm leading-relaxed transition-colors duration-300">{benefit.desc}</p>
               </div>
-              <h3 className="text-sm font-bold text-dark group-hover:text-primary transition-colors">{title}</h3>
-              <p className="text-sm text-muted leading-6">{desc}</p>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

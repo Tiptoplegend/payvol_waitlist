@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle2, Loader2 } from 'lucide-react'
+import { ArrowRight, Loader2 } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { db } from '../firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
@@ -15,7 +15,6 @@ export default function Hero() {
     
     setIsLoading(true)
     try {
-      // Extract name from email (e.g. john.doe@email.com -> John Doe)
       const nameMatch = email.match(/^([^@]*)@/);
       const rawName = nameMatch ? nameMatch[1] : '';
       const formattedName = rawName.replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -23,7 +22,7 @@ export default function Hero() {
       await addDoc(collection(db, 'waitlist'), {
         name: formattedName,
         email: email,
-        source: 'hero',
+        source: 'hero_banner',
         joinedAt: new Date().toISOString(),
         createdAt: serverTimestamp()
       })
@@ -37,153 +36,95 @@ export default function Hero() {
   }
 
   return (
-    <section
-      className="relative pt-28 pb-16 overflow-x-hidden bg-white"
-      id="home"
-    >
-      {/* Precision SVG Background replicating the original design */}
-      <div className="absolute bottom-0 md:top-0 left-0 w-full h-[20%] md:h-full overflow-hidden pointer-events-none z-0">
-        <svg viewBox="0 0 1440 800" className="absolute bottom-0 md:top-0 right-0 w-full h-full object-cover object-right-bottom" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <circle cx="3" cy="3" r="2" fill="rgba(255,255,255,0.12)"/>
-            </pattern>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3b82f6" />
-              <stop offset="100%" stopColor="#1d4ed8" />
-            </linearGradient>
-            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1e3a8a" />
-              <stop offset="100%" stopColor="#011c61" />
-            </linearGradient>
-          </defs>
+    <section className="relative min-h-screen pt-32 pb-20 lg:pt-40 lg:pb-32 bg-bgLight dark:bg-bgDark flex items-center transition-colors duration-300" id="home">
+      
+      {/* Subtle radial gradient — not flashy */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-black/[0.03] via-bgLight to-bgLight dark:from-navyBlue/20 dark:via-bgDark dark:to-bgDark pointer-events-none transition-colors duration-300" />
 
-          {/* Brighter Blue Base Wave */}
-          <path d="M 700 800 C 700 500, 1000 250, 1440 150 L 1440 800 Z" fill="url(#grad1)"/>
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
           
-          {/* Dark Blue Overlay Wave */}
-          <path d="M 900 800 C 900 550, 1150 350, 1440 300 L 1440 800 Z" fill="url(#grad2)"/>
-          
-          {/* Dotted Grid Pattern on the right */}
-          <path d="M 1150 800 C 1150 650, 1250 500, 1440 450 L 1440 800 Z" fill="url(#dots)"/>
-        </svg>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-
-          <div className="flex flex-col gap-5">
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex w-fit py-1.5 px-4 text-xs font-bold tracking-widest uppercase rounded-full border border-blue-200" 
-              style={{ background: 'linear-gradient(135deg, rgba(1,28,97,0.08) 0%, rgba(93,135,255,0.12) 100%)', color: '#011c61' }}
-            >
-              COMING SOON
-            </motion.span>
-
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl text-dark font-bold leading-tight"
-            >
-              Smarter payments<br />
-              <span className="text-blue-500">Brighter future.</span>
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-base text-muted leading-7 max-w-md"
-            >
-             Payvol is redefining everyday finance by combining payments, cards, financial insights, and crypto access into one unified platform. Our mission is to transform how people interact with money — turning daily transactions into a pathway for greater financial access and smarter decision-making.
-            </motion.p>
-
+          {/* Left Content */}
+          <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-2 h-[50px] relative"
+              transition={{ duration: 0.6 }}
+              className="w-full"
             >
-              <AnimatePresence mode="wait">
+              <h1 className="text-5xl md:text-6xl lg:text-[4rem] font-bold leading-[1.08] text-textLight dark:text-white mb-6 tracking-tight transition-colors duration-300">
+                One App.<br />
+                Endless <span className="text-primary">Possibilities.</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-textLightMuted dark:text-textMuted leading-relaxed max-w-lg mb-10 transition-colors duration-300">
+                Manage payments, cards, crypto, and financial insights in one seamless platform designed for the next generation.
+              </p>
+
+              {/* Email Capture */}
+              <div className="w-full max-w-md mb-14">
                 {!isSubmitted ? (
-                  <motion.form 
-                    key="form"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    onSubmit={handleSubmit}
-                    className="flex items-center gap-2 absolute inset-0"
-                  >
+                  <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
                     <input
                       type="email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="Enter your email address"
                       required
-                      className="flex-1 h-full px-4 rounded-md border border-gray-300 text-sm outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="input-dark flex-1"
                     />
-                    <button type="submit" disabled={isLoading} className="bg-[#011c61] h-full px-6 rounded-md text-sm text-white font-medium whitespace-nowrap hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed flex items-center justify-center min-w-[120px]">
-                      {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Join Waitlist'}
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap min-w-[160px]"
+                    >
+                      {isLoading ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <>
+                          Get Early Access
+                          <ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
                     </button>
-                  </motion.form>
+                  </form>
                 ) : (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    className="absolute inset-0 flex items-center gap-3 bg-green-50 border border-green-200 text-green-700 px-5 rounded-md"
-                  >
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span className="text-sm font-medium">You're on the list! We'll be in touch.</span>
-                  </motion.div>
+                  <div className="flex items-center gap-3 bg-primary/[0.08] border border-primary/20 text-primary px-6 py-4 rounded-lg">
+                    <span className="text-[15px] font-medium">You're on the list — we'll be in touch soon.</span>
+                  </div>
                 )}
-              </AnimatePresence>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center gap-3"
-            >
-              <div className="flex -space-x-2">
-                <img src="/assets/images/user/client-03.jpg" className="h-9 w-9 rounded-full border-2 border-white object-cover" alt="user" />
-                <img src="/assets/images/user/client-04.jpg" className="h-9 w-9 rounded-full border-2 border-white object-cover" alt="user" />
-                <img src="/assets/images/user/client-05.jpg" className="h-9 w-9 rounded-full border-2 border-white object-cover" alt="user" />
-                <img src="/assets/images/user/client-07.jpg" className="h-9 w-9 rounded-full border-2 border-white object-cover" alt="user" />
               </div>
-              <p className="text-sm text-muted font-medium">Join 5,000+ others on the waitlist</p>
-            </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap gap-3 mt-2"
-            >
-              <img src="/assets/images/store.png" className="h-12 hover:scale-105 transition-transform cursor-pointer" alt="App Store" />
-              <img src="/assets/images/google.png" className="h-12 hover:scale-105 transition-transform cursor-pointer" alt="Google Play" />
+              {/* Trust indicators — clean, minimal text separated by mid-dots */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] tracking-[0.15em] uppercase text-textLight/40 dark:text-white/30 font-medium transition-colors duration-300">
+                <span>Built for Emerging Markets</span>
+                <span className="text-black/10 dark:text-white/10">·</span>
+                <span>Secure by Design</span>
+                <span className="text-black/10 dark:text-white/10">·</span>
+                <span>All-in-One Finance</span>
+              </div>
             </motion.div>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative flex items-center justify-center min-h-[400px] md:min-h-[560px]"
-          >
-            <motion.img
-              animate={{ y: [0, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              src="/assets/images/mockup.png"
-              alt="PayVol App Mockup"
-              className="relative z-10 h-[450px] md:h-[680px] max-w-full object-contain drop-shadow-[0_20px_50px_rgba(1,28,97,0.3)]"
-            />
-          </motion.div>
+          {/* Right Mockup */}
+          <div className="w-full lg:w-1/2 mt-12 lg:mt-0">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="hero-devices relative"
+            >
+              {/* Very subtle glow — not a big blurry blob */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-primary/[0.06] blur-[120px] rounded-full pointer-events-none" />
+              
+              <img
+                src="/assets/images/payvol-mockups.png"
+                alt="PayVol Dashboard and Mobile App"
+                className="hero-mockups-img relative z-10"
+                draggable={false}
+              />
+            </motion.div>
+          </div>
 
         </div>
       </div>

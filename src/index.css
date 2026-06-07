@@ -3,33 +3,115 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply bg-bgLight text-textLight antialiased font-sans dark:bg-bgDark dark:text-white transition-colors duration-300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, sans-serif;
+    letter-spacing: -0.03em;
+  }
+
   html {
     scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: rgba(52, 199, 89, 0.3);
+    color: #fff;
   }
 }
 
 @layer components {
+  /* Buttons */
   .btn-primary {
-    background-color: #011c61;
+    @apply bg-primary text-white text-sm font-semibold transition-all duration-200 hover:bg-primaryHover px-6 py-3 rounded-lg active:scale-[0.98];
   }
 
-  .btn-blue {
-    background-color: #2563eb;
+  .btn-outline {
+    @apply bg-transparent border border-black/10 text-textLight text-sm font-semibold transition-all duration-200 hover:bg-black/[0.04] hover:border-black/20 dark:border-white/10 dark:text-white dark:hover:bg-white/[0.04] dark:hover:border-white/20 px-6 py-3 rounded-lg active:scale-[0.98];
   }
 
-  .footer-bg {
-    background-color: #010d2e;
+  /* Input fields */
+  .input-dark {
+    @apply w-full border border-black/10 px-4 py-3 text-sm text-textLight bg-black/[0.02] placeholder:text-black/40 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all duration-200 rounded-lg dark:border-white/10 dark:text-white dark:bg-white/[0.03] dark:placeholder:text-white/30;
   }
 
-  .mockup-img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    filter: contrast(1.02);
+  /* Cards — sharp, not bubbly */
+  .feature-card {
+    @apply relative bg-bgLightCard border border-black/[0.06] rounded-xl p-8 transition-all duration-300 dark:bg-bgCard dark:border-white/[0.06];
   }
 
-  .cta-gradient {
-    background: linear-gradient(135deg, #1a3a8f 0%, #011d61 50%, #000d3a 100%);
+  .feature-card:hover {
+    @apply border-black/[0.12] dark:border-white/[0.12];
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.06);
+    transform: translateY(-2px);
   }
+
+  .dark .feature-card:hover {
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.06);
+  }
+
+  /* Section label — replaces the rounded-full pill badges */
+  .section-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.2em] text-primary mb-6 block;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl md:text-[2.75rem] font-bold text-textLight dark:text-white leading-[1.15] tracking-tight transition-colors duration-300;
+  }
+
+  /* Hero image */
+  .hero-devices {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero-mockups-img {
+    width: 100%;
+    max-width: min(100%, 750px);
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-devices {
+      justify-content: flex-end;
+    }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #050B17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }
